@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Website Title</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url('../images/home.png'); /* Make sure this path is correct */
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;  
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fefefe;
+            padding: 20px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 300px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="ageModal" class="modal">
+    <div class="modal-content">
+        <h2>Please verify your age</h2>
+        <input type="number" id="ageInput" placeholder="Enter your age">
+        <button onclick="verifyAge()">Submit</button>
+        <p id="message"></p>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Set a timer to delay the modal display by 10 seconds
+    setTimeout(function() {
+        var modal = document.getElementById("ageModal");
+        modal.style.display = "block";
+    }, 3000); // Change 10000 to the number of milliseconds you want to delay
+
+    var input = document.getElementById('ageInput');
+    input.addEventListener("keyup", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            verifyAge();
+        }
+    });
+});
+
+function verifyAge() {
+    var age = document.getElementById('ageInput').value;
+    if (age >= 18) {
+        window.location.href = 'map_.html';
+    } else if (age !== '') {
+        window.location.href = 'under18.html';
+    } else {
+        document.getElementById('message').innerHTML = 'Please enter your age.';
+    }
+}
+</script>
+
+</body>
+</html>
